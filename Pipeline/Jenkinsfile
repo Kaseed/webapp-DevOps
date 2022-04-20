@@ -4,16 +4,16 @@ pipeline {
     stages {
         stage('Build') {
                 steps {                    
-                    dir('./App') {
-                        sh 'yarn'
-                        sh 'yarn build:prod'
+                    dir('./Pipeline') {
+                        sh 'docker-compose build build-agent'
                     }
                 }
         }
         stage('Test') {
             steps {
-                dir('./App') {
-                    sh 'yarn test'
+                dir('./Pipeline') {
+                    sh 'docker-compose build test-agent'
+                    sh 'docker-compose up'
                 }
             }
         }
