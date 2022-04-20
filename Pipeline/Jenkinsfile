@@ -8,6 +8,7 @@ pipeline {
                     dir('./App') {
                         sh 'yarn'
                         sh 'yarn build:prod'
+                    }
                 }
         }
         stage('Test') {
@@ -17,4 +18,5 @@ pipeline {
                 }
             }
         }
+    }
 }
