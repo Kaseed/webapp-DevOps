@@ -1,0 +1,20 @@
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+                steps {                    
+                    dir('./App') {
+                        sh 'yarn'
+                        sh 'yarn build:prod'
+                }
+        }
+        stage('Test') {
+            steps {
+                dir('./App') {
+                    sh 'yarn test'
+                }
+            }
+        }
+}
