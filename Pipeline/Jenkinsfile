@@ -38,8 +38,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'echo "DEPLOY"'
-                sh 'docker login'
-                sh 'docker-compose push'
+                dir('./Pipeline') {
+                    sh 'docker login'
+                    sh 'docker-compose push'
+                }
             }
             post{
                 success{
