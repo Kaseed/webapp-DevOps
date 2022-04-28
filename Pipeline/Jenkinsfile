@@ -3,17 +3,45 @@ pipeline {
 
     stages {
         stage('Build') {
-                steps {                    
-                    dir('./Pipeline') {
-                        sh 'docker-compose build build-agent'
-                    }
+            steps {                    
+                dir('./Pipeline') {
+                    sh 'docker-compose build build-agent'
                 }
+            }
+            post{
+                success{
+                    sh 'echo "Success (BUILD)"'
+                }
+                failure {
+                    sh 'echo "Failure (BUILD)"'
+                }
+            }
         }
         stage('Test') {
             steps {
                 dir('./Pipeline') {
                     sh 'docker-compose build test-agent'
                     sh 'docker-compose up'
+                }
+            }
+            post{
+                success{
+                    sh 'echo "Success (TEST)"'
+                }
+                failure {
+                    sh 'echo "Failure (TEST)"'
+                }
+            }
+        }
+        stage('Deploy') {
+
+            sh 'echo "DEPLOY"'
+            post{
+                success{
+                    sh 'echo "Success (DEPLOY)"'
+                }
+                failure {
+                    sh 'echo "Failure (DEPLOY)"'
                 }
             }
         }
