@@ -40,6 +40,7 @@ pipeline {
                 sh 'echo "DEPLOY"'
                 dir('./Pipeline') {
                     sh 'docker login'
+                    sh 'docker search kaseed'
                     sh 'docker-compose push'
                 }
             }
