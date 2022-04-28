@@ -3,7 +3,7 @@ services:
         build:
             context: ./build/
             dockerfile: Dockerfile
-        image: kaseed/devops-app:latest
+        image: kaseed/devops-app
     test-agent:
         build:
             context: ./test/
