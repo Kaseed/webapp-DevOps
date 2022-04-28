@@ -3,7 +3,8 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {                    
+            steps {  
+                sh 'echo "BUILD"'                  
                 dir('./Pipeline') {
                     sh 'docker-compose build build-agent'
                 }
@@ -19,6 +20,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'echo "TEST"'      
                 dir('./Pipeline') {
                     sh 'docker-compose build test-agent'
                     sh 'docker-compose up'
@@ -36,6 +38,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'echo "DEPLOY"'
+                sh 'docker login'
+                sh 'docker-compose push'
             }
             post{
                 success{
