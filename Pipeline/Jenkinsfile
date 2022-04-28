@@ -34,8 +34,9 @@ pipeline {
             }
         }
         stage('Deploy') {
-
-            sh 'echo "DEPLOY"'
+            steps {
+                sh 'echo "DEPLOY"'
+            }
             post{
                 success{
                     sh 'echo "Success (DEPLOY)"'
